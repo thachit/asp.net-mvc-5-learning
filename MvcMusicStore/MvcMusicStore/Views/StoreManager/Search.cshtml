@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+
+@using (Html.BeginForm("SearchResult", "StoreManager", FormMethod.Get))
+{
+    <div class="form-horizontal">
+        <input type="text" name="q" />
+        <input type="submit" value="search" />
+    </div>
+}

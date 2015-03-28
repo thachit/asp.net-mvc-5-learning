@@ -1,0 +1,84 @@
+﻿@model BookStoreApplication.Models.Book
+
+@{
+    ViewBag.Title = "Create New Book";
+}
+
+
+<h2 class="page-header">Create New Book</h2>
+
+@using (Html.BeginForm("Create", "Store", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(true, "", htmlAttributes: new { @class = "text-danger" });
+    <div class="form-group">
+        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "form-label col-md-2"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Image, new { @class = "form-control", type="file"})
+            @Html.ValidationMessageFor(model => model.Image, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class="form-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Title, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Title, null, htmlAttributes: new { @class="text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateRelease, htmlAttributes: new { @class = "form-label col-md-2"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.DateRelease, htmlAttributes: new { @class = "form-control", type="date" })
+            @Html.ValidationMessageFor(model => model.DateRelease, null, htmlAttributes: new { @class = "text-danger"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Publish, htmlAttributes: new { @class = "form-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.Publish, htmlAttributes: new { @class = ""})
+            @Html.ValidationMessageFor(model => model.Publish, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "form-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.Description, null, htmlAttributes: new { @class = "text-danger"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "form-label col-md-2"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Price, htmlAttributes: new { @class = "form-control", type="number", min = 1})
+            @Html.ValidationMessageFor(model => model.Price, null, htmlAttributes: new { @class = "text-danger"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AuthorId, htmlAttributes: new { @class = "form-label col-md-2"})
+        <div class="col-md-10">
+            @* @Html.DropDownList("AuthorId", null, htmlAttributes: new { @class = "form-control" }) *@
+            @Html.DropDownListFor(model => model.AuthorId, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AuthorId, null, htmlAttributes: new { @class = "text-danger"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GenreId, htmlAttributes: new { @class = "form-label col-md-2" })
+        <div class="col-md-10">
+            @* @Html.DropDownList("GenreId", null, htmlAttributes: new { @class = "form-control"}) *@
+            @Html.DropDownListFor(model => model.GenreId, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.GenreId, null, htmlAttributes: new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-danger">Create</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+    </div>
+}
